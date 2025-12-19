@@ -32,7 +32,7 @@ def add_expense(amount, category, date, description, need_type):
     conn = get_connection()
     cur = conn.cursor()
     cur.execute("""
-        INSERT INTO expenses (amount, category, date, description, need_type)
+        INSERT INTO expenses (amount, category, date, description)
         VALUES (?, ?, ?, ?, ?);
     """, (amount, category, date, description, need_type))
     conn.commit()
@@ -53,9 +53,9 @@ def update_expense(expense_id, amount, category, date, description, need_type):
     cur = conn.cursor()
     cur.execute("""
         UPDATE expenses
-        SET amount = ?, category = ?, date = ?, description = ?, need_type = ?
+        SET amount = ?, category = ?, date = ?, description = ?
         WHERE id = ?;
-    """, (amount, category, date, description, need_type, expense_id))
+    """, (amount, category, date, description, expense_id))
     conn.commit()
     conn.close()
 
