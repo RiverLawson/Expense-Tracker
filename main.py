@@ -1,6 +1,6 @@
 import expense_db as db
 
-#Shows the main menu
+
 def show_menu():
     print("Expense Tracker")
     print("1. Add Expense")
@@ -9,26 +9,25 @@ def show_menu():
     print("4. Delete Expense")
     print("5. Exit")
 
-#makes sure the table exists
-def main():
-    db.init_db()  
 
-#If the table exists, shows the menu and handles the user's choice
+def main():
+    db.init_db()
+
     while True:
         show_menu()
         choice = input("Choose an option: ").strip()
 
-#If you chose 1-5, performs the corresponding action
+        # ADD EXPENSE
         if choice == "1":
             amount = float(input("Enter amount: "))
             category = input("Enter category: ").strip()
             date = input("Enter date (MM-DD-YYYY): ").strip()
             description = input("Enter description: ").strip()
-            need_type = input("Enter need type (1-Need, 2-Want): ").strip()
 
-            db.add_expense(amount, category, date, description, need_type)
+            db.add_expense(amount, category, date, description)
             print("Expense added.")
 
+        # LIST EXPENSES
         elif choice == "2":
             expenses = db.list_expenses()
             if not expenses:
@@ -37,22 +36,24 @@ def main():
                 for expense in expenses:
                     print(expense)
 
+        # UPDATE EXPENSE
         elif choice == "3":
             expense_id = int(input("Enter expense ID to update: "))
             amount = float(input("Enter new amount: "))
             category = input("Enter new category: ").strip()
             date = input("Enter new date (MM-DD-YYYY): ").strip()
             description = input("Enter new description: ").strip()
-            need_type = input("Enter new need type (1-Need, 2-Want): ").strip()
 
-            db.update_expense(expense_id, amount, category, date, description, need_type)
+            db.update_expense(expense_id, amount, category, date, description)
             print("Expense updated.")
 
+        # DELETE EXPENSE
         elif choice == "4":
             expense_id = int(input("Enter expense ID to delete: "))
             db.delete_expense(expense_id)
             print("Expense deleted.")
 
+        # EXIT
         elif choice == "5":
             print("Exiting...")
             break
