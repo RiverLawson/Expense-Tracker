@@ -28,7 +28,7 @@ def init_db():
     conn.close()
 
 #This inserts a new expense row into the expenses table
-def add_expense(amount, category, date, description, need_type):
+def add_expense(amount, category, date, description):
     conn = get_connection()
     cur = conn.cursor()
     cur.execute("""
