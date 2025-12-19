@@ -20,7 +20,7 @@ def init_db():
             category TEXT NOT NULL,
             date TEXT NOT NULL,
             description TEXT,
-            need_type TEXT NOT NULL
+            
         );
     """)
 
