@@ -24,7 +24,7 @@ def main():
             category = input("Enter category: ").strip()
             date = input("Enter date (MM-DD-YYYY): ").strip()
             description = input("Enter description: ").strip()
-            need_type = input("Enter need type (1-Need, 2-Want): ").strip()
+            
 
             db.add_expense(amount, category, date, description, need_type)
             print("Expense added.")
@@ -43,7 +43,7 @@ def main():
             category = input("Enter new category: ").strip()
             date = input("Enter new date (MM-DD-YYYY): ").strip()
             description = input("Enter new description: ").strip()
-            need_type = input("Enter new need type (1-Need, 2-Want): ").strip()
+            
 
             db.update_expense(expense_id, amount, category, date, description, need_type)
             print("Expense updated.")
