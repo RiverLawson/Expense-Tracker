@@ -34,7 +34,7 @@ def add_expense(amount, category, date, description, need_type):
     cur.execute("""
         INSERT INTO expenses (amount, category, date, description)
         VALUES (?, ?, ?, ?, ?);
-    """, (amount, category, date, description, need_type))
+    """, (amount, category, date, description))
     conn.commit()
     conn.close()
 
@@ -48,7 +48,7 @@ def list_expenses():
     return rows
 
 #updates an existing expense row by its ID
-def update_expense(expense_id, amount, category, date, description, need_type):
+def update_expense(expense_id, amount, category, date, description):
     conn = get_connection()
     cur = conn.cursor()
     cur.execute("""
