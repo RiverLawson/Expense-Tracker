@@ -20,7 +20,7 @@ def init_db():
             category TEXT NOT NULL,
             date TEXT NOT NULL,
             description TEXT,
-            
+            need_type TEXT NOT NULL
         );
     """)
 
@@ -28,13 +28,13 @@ def init_db():
     conn.close()
 
 #This inserts a new expense row into the expenses table
-def add_expense(amount, category, date, description):
+def add_expense(amount, category, date, description, need_type):
     conn = get_connection()
     cur = conn.cursor()
     cur.execute("""
-        INSERT INTO expenses (amount, category, date, description)
+        INSERT INTO expenses (amount, category, date, description, need_type)
         VALUES (?, ?, ?, ?, ?);
-    """, (amount, category, date, description))
+    """, (amount, category, date, description, need_type))
     conn.commit()
     conn.close()
 
@@ -48,14 +48,14 @@ def list_expenses():
     return rows
 
 #updates an existing expense row by its ID
-def update_expense(expense_id, amount, category, date, description):
+def update_expense(expense_id, amount, category, date, description, need_type):
     conn = get_connection()
     cur = conn.cursor()
     cur.execute("""
         UPDATE expenses
-        SET amount = ?, category = ?, date = ?, description = ?
+        SET amount = ?, category = ?, date = ?, description = ?, need_type = ?
         WHERE id = ?;
-    """, (amount, category, date, description, expense_id))
+    """, (amount, category, date, description, need_type, expense_id))
     conn.commit()
     conn.close()
 
