@@ -2,7 +2,7 @@ import sqlite3
 
 DB_NAME = "expenses.db"
 
-
+#This defines the function for connecting the database to the main script
 def get_connection():
     return sqlite3.connect(DB_NAME)
 
@@ -10,7 +10,7 @@ def get_connection():
 def init_db():
     conn = get_connection()
     cur = conn.cursor()
-
+#This creates the table as long as one doesn't already exist
     cur.execute("""
         CREATE TABLE IF NOT EXISTS expenses (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -24,7 +24,7 @@ def init_db():
     conn.commit()
     conn.close()
 
-
+#defines function for adding expenses 
 def add_expense(amount, category, date, description):
     conn = get_connection()
     cur = conn.cursor()
@@ -37,7 +37,7 @@ def add_expense(amount, category, date, description):
     conn.commit()
     conn.close()
 
-
+#defines function for listing expenses
 def list_expenses():
     conn = get_connection()
     cur = conn.cursor()
@@ -48,7 +48,7 @@ def list_expenses():
     conn.close()
     return rows
 
-
+#defines function for updating expenses
 def update_expense(expense_id, amount, category, date, description):
     conn = get_connection()
     cur = conn.cursor()
@@ -62,7 +62,7 @@ def update_expense(expense_id, amount, category, date, description):
     conn.commit()
     conn.close()
 
-
+#defines function for deleting expenses
 def delete_expense(expense_id):
     conn = get_connection()
     cur = conn.cursor()
